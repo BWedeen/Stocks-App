@@ -9,5 +9,9 @@
 
 a {
   text-decoration: none;
-  color: gold;
+  color: "#fcfcfc";
+}
+
+a:hover {
+  color: white;
 }

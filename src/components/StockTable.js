@@ -8,8 +8,6 @@ import { Pagination } from '@material-ui/lab';
 import { StockList } from '../config/api';
 import stock from 'financialmodelingprep/lib/stock';
 
-
-
 const StockTable = () => {
 
     const [stocks, setStocks] = useState([])
@@ -33,7 +31,7 @@ const StockTable = () => {
         fetchStocks();
     }, [])
 
-    console.log("Data:");
+    console.log("All stock symbols/names:");
     console.log(stocks);               
 
     /*Basic styling*/
@@ -72,7 +70,7 @@ const StockTable = () => {
 
     return (
         <ThemeProvider theme={darkTheme}>
-            <Container style={{ textAlign: "center"}}>
+            <Container style={{ textAlign: "center" }}>
                 <Typography
                     variant="h4"
                     style={{ margin: 18, fontFamily: "Montserrat" }}
@@ -126,6 +124,7 @@ const StockTable = () => {
                                             >
                                                 <div style={{ display: "flex", flexDirection: "column" }}>
                                                     <span style={{
+                                                        cursor: "pointer",
                                                         fontSize: 22,
                                                     }}>
                                                         {row.symbol}

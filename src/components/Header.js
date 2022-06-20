@@ -30,7 +30,7 @@ const Header = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar color='transparent' position='static'>
+      <AppBar color='#ccccf' position='sticky'>
           <Container>
               <Toolbar>
                   <Typography 
