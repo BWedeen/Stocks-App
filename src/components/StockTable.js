@@ -113,7 +113,7 @@ const StockTable = () => {
 
                                     return (
                                         <TableRow
-                                            onClick={() => history.push(`/stocks/${row.id}`)}
+                                            onClick={() => history.push(`/stocks/${row.symbol}`)}
                                             key={row.id}
                                         >
                                             <TableCell 
