@@ -1,9 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { makeStyles, createTheme, Typography, TableContainer, Table, TableRow, TableCell, TableHead, TableBody, ThemeProvider } from '@material-ui/core';
-import LineChart from 'react-linechart';
+import { 
+  makeStyles, 
+  createTheme, 
+  Typography, 
+  TableContainer, 
+  Table, 
+  TableRow, 
+  TableCell, 
+  TableHead, 
+  TableBody, 
+  ThemeProvider 
+} from '@material-ui/core';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { faker } from '@faker-js/faker';
 import { Line } from 'react-chartjs-2';
+
 
 import { StockQuote, StockChartData } from '../config/api';
 import { StockInfo } from '../components';
@@ -52,17 +74,65 @@ const StockPage = () => {
   console.log("chartData", chartData);
   console.log("stockData", stockData);
 
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+  );
+  
+  const options = {
+    responsive: true,
+    
+    scales: {
+      x: {
+        grid: {
+          color: 'rgba(145, 145, 145,0.95)',
+          borderColor: '#bfbfbf'
+        },
+        ticks: {
+          color: 'white'
+        }
+      },
+      y: {
+        grid: {
+          color: 'rgba(145, 145, 145,0.15)',
+          borderColor: '#bfbfbf'
+        },
+        ticks: {
+          color: 'white'
+        }
+      }
+    },
+    color: "white",
+    plugins: {
+      legend: {
+        display: false
+      },
+    },
+  };
+  
+  const labels = ['1', '2', '3', '4', '5', '6', '7'];
+  
+  const data = {
+    labels,
+    datasets: [
+      {
+        label: 'Stock Price',
+        data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+        borderColor: 'lightgreen',
+        backgroundColor: 'white',
+      },
+    ],
+  };
+
   const cellStyle = {
     fontWeight: "400",
     fontFamily: "Montserrat",
   }
-
-  var data = [
-    {							
-        color: "white", 
-        points: [{x: 1, y: 38.71}, {x: 2, y: 37.91}, {x: 3, y: 40.2}, {x: 4, y: 39.84}, {x: 5, y: 40.13}, {x: 6, y: 37.91}, {x: 7, y: 38.71}] 
-    }
-  ];
 
   /*Basic styling*/
   const darkTheme = createTheme({
@@ -135,6 +205,7 @@ const StockPage = () => {
                   style={{
                     fontWeight: "400",
                     fontFamily: "Montserrat",
+                    color: stockData?.changesPercentage > 0 ? "rgb(14, 203, 129)" : "red",
                   }}
                 >
                   {stockData?.changesPercentage ? 
@@ -151,7 +222,11 @@ const StockPage = () => {
                   }
                 </TableCell>
                 <TableCell
-                  style={cellStyle}
+                  style={{
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
+                    color: stockData?.eps > 0 ? "rgb(14, 203, 129)" : "red",
+                  }}
                 >
                   {stockData?.eps ?
                     (formatter.format(stockData?.eps.toFixed(2))):
@@ -165,15 +240,39 @@ const StockPage = () => {
       <>
         {chartData ? 
           ( 
-             <> 
-              <LineChart
-                  width={800}
-                  height={500}
-                  data={data}
-              />
-             </>
+            <> 
+              <Typography 
+                variant="h4"
+                style={{
+                  color: "white",
+                  fontWeight: "600",
+                  fontFamily: "Montserrat",
+                  paddingTop: "2.5rem",
+                  paddingBottom: "2.5rem",
+                  paddingLeft: "2.55rem",
+                }}
+              >
+                Performance This Week
+              </Typography>
+              <Line options={options} data={data} />
+            </>
           ) : (
-            <>Loading...</>
+            <> 
+              <Typography 
+                variant="h4"
+                style={{
+                  color: "white",
+                  fontWeight: "600",
+                  fontFamily: "Montserrat",
+                  paddingTop: "2.5rem",
+                  paddingBottom: "2.5rem",
+                  paddingLeft: "1.5rem",
+                }}
+              >
+                Stock This Week
+              </Typography>
+              <Line options={options} data={data} />
+            </>
           )
         }
       </>
