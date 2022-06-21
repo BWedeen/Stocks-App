@@ -29,15 +29,12 @@ import { Line } from 'react-chartjs-2';
 
 
 import { StockQuote, StockChartData } from '../config/api';
-import { StockInfo } from '../components';
 import './StockPage.css';
 
 const StockPage = () => {
   const { symbol } = useParams();
   const [stockData, setStockData] = useState();
   const [chartData, setChartData] = useState();
-  const [loading, setLoading] = useState(false); 
-  const [change, setChange] = useState();
 
   /*For formatting currency*/
   var formatter = new Intl.NumberFormat('en-US', {
@@ -95,7 +92,11 @@ const StockPage = () => {
           borderColor: '#bfbfbf'
         },
         ticks: {
-          color: 'white'
+          color: 'white',
+          font: {
+            size: 19,
+            family: "Montserrat",
+          }
         }
       },
       y: {
@@ -104,26 +105,37 @@ const StockPage = () => {
           borderColor: '#bfbfbf'
         },
         ticks: {
-          color: 'white'
+          color: 'white',
+          font: {
+            size: 19,
+            family: "Montserrat",
+          }
         }
       }
     },
     color: "white",
     plugins: {
       legend: {
-        display: false
+        position: 'top',
+        display: false,
+        labels: {
+          font: {
+            size: 19,
+            family: "Montserrat",
+          }
+        }
       },
     },
   };
   
-  const labels = ['1', '2', '3', '4', '5', '6', '7'];
+  const labels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   
   const data = {
     labels,
     datasets: [
       {
-        label: 'Stock Price',
-        data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+        label: 'Stock Price (USD)',
+        data: labels.map(() => faker.datatype.number({ min: 0, max: 100 })),
         borderColor: 'lightgreen',
         backgroundColor: 'white',
       },

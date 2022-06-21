@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider, Container, Typography, TextField, TableCont
 import { Pagination } from '@material-ui/lab';
 
 import { StockList } from '../config/api';
+import StockContext from '../StockContext';
 
 const StockTable = () => {
 
@@ -14,11 +15,15 @@ const StockTable = () => {
         currency: 'USD',
     });
 
-    const [stocks, setStocks] = useState([])
-    const [loading, setLoading] = useState(false); 
+    console.log("STOCK CONTEXT", StockContext);
+    // const [ stocks ] = StockContext();
+    // console.log("STOCK LIST", stocks); 
+
     const history = useHistory();
     const [search, setSearch] = useState("")
     const [page, setPage] = useState(1);
+    const [stocks, setStocks] = useState([])
+    const [loading, setLoading] = useState(false);
 
     /*Get all available stocks from FMP*/
     const fetchStocks = async () => {
@@ -35,9 +40,8 @@ const StockTable = () => {
         fetchStocks();
     }, [])
 
-    console.log("All stock symbols/names:");
-    console.log(stocks);               
-
+    console.log("All stock symbols/names:", stocks);   
+               
     /*Basic styling*/
     const darkTheme = createTheme({
         palette: {
@@ -74,7 +78,7 @@ const StockTable = () => {
                         color: "white",
                     }}
                 >
-                    Analyze and track stocks from every major market.
+                    Find stocks from every major exchange.
                 </Typography>
                 <TextField 
                     label="Search for stocks"

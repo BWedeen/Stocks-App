@@ -2,6 +2,8 @@ import React from 'react'
 import { useHistory } from 'react-router-dom';
 import { AppBar, Container, Toolbar, Typography, makeStyles, createTheme, ThemeProvider } from "@material-ui/core";
 
+import { FaYinYang } from 'react-icons/fa';
+
 const useStyles = makeStyles(() => ({
   title: {
     flex: 1,
@@ -9,7 +11,6 @@ const useStyles = makeStyles(() => ({
     fontFamily: "Montserrat",
     fontWeight: "700",
     cursor: "pointer",
-    marginLeft: "-17.3rem",
   }
 }))
 
@@ -20,7 +21,7 @@ const Header = () => {
   const darkTheme = createTheme({
     palette: {
       primary: {
-        main: "#fff",
+        main: "#fcfcfc",
       },
       type: "dark",
     },
@@ -28,18 +29,37 @@ const Header = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar color="fff" position='sticky'>
+      <AppBar position='sticky'>
           <Container>
               <Toolbar>
+                <FaYinYang 
+                  size={"26"}
+                  style={{
+                    cursor: "pointer"
+                  }}
+                  onClick={()=> {
+                      history.push("/")
+                      window.location.reload(false)}
+                    }
+                />
+                <div style={{
+                  paddingTop: "1px",
+                  paddingLeft: "10px"
+                }}>
                   <Typography 
+                    style={{
+                      color: "black",
+                      
+                    }}
                     onClick={()=> {
                       history.push("/")
                       window.location.reload(false)}} 
                     className={classes.title}
                     varaint='h6'
                   > 
-                    Stock Tracker 
+                     Stock Tracker 
                   </Typography>
+                </div>
               </Toolbar>
           </Container>
       </AppBar>
