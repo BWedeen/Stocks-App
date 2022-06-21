@@ -48,6 +48,11 @@ const StockTable = () => {
         },
     })
 
+    const cellStyle = {
+        fontWeight: "400",
+        fontFamily: "Montserrat",
+    }
+
     const handleSearch = () => {
         
         return stocks.filter((stock) =>
@@ -58,16 +63,10 @@ const StockTable = () => {
 
     return (
         <ThemeProvider theme={darkTheme}>
-            <Container style={{ textAlign: "center" }}>
-                <Typography
-                    variant="h4"
-                    style={{ margin: 18, fontFamily: "Montserrat" }}
-                >
-                </Typography>
+            <Container style={{ textAlign: "center",  paddingTop: "1.5rem"}}>
                 <TextField 
                     label="Search for stocks"
                     variant="filled"
-                    color="primary"
                     style={{marginBottom: 20, width: "100%"}}
                     onChange={(e)=>setSearch(e.target.value)}
                 />
@@ -127,11 +126,11 @@ const StockTable = () => {
                                                 </div>
                                             </TableCell>
 
-                                            <TableCell>
+                                            <TableCell style={cellStyle}>
                                                 {formatter.format(row.price)}
                                             </TableCell> 
 
-                                            <TableCell>
+                                            <TableCell style={cellStyle}>
                                                 {row.exchangeShortName}
                                             </TableCell>               
                                         </TableRow>

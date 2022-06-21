@@ -52,7 +52,10 @@ const StockPage = () => {
   console.log("chartData", chartData);
   console.log("stockData", stockData);
 
-  
+  const cellStyle = {
+    fontWeight: "400",
+    fontFamily: "Montserrat",
+  }
 
   var data = [
     {							
@@ -77,16 +80,20 @@ const StockPage = () => {
       <div className={'top'}>
         <Typography 
           variant="h3"
-          style= {{
-            color: "white"
+          style={{
+            color: "white",
+            fontWeight: "600",
+            fontFamily: "Montserrat",
           }}
         >
           {symbol}
         </Typography>
         <Typography 
           variant="h4"
-          style= {{
-            color: "white"
+          style={{
+            color: "white",
+            fontWeight: "400",
+            fontFamily: "Montserrat",
           }}
         >
           {stockData?.name}
@@ -116,7 +123,9 @@ const StockPage = () => {
                                 }}
                                 >
               <TableRow>
-                <TableCell>
+                <TableCell
+                  style={cellStyle}
+                >
                   {stockData?.price ? 
                     (formatter.format(stockData?.price.toFixed(2))) : 
                     ("Price Unknown")
@@ -124,7 +133,8 @@ const StockPage = () => {
                 </TableCell>
                 <TableCell
                   style={{
-                    fontWeight: 500,
+                    fontWeight: "400",
+                    fontFamily: "Montserrat",
                   }}
                 >
                   {stockData?.changesPercentage ? 
@@ -132,13 +142,17 @@ const StockPage = () => {
                     ("Change Unknown")
                   }
                 </TableCell>
-                <TableCell>
+                <TableCell
+                  style={cellStyle}
+                >
                   {stockData?.earningsAnnouncement ? 
                     ((stockData?.earningsAnnouncement).slice(0,10)) : 
                     ("Date Unknown")
                   }
                 </TableCell>
-                <TableCell>
+                <TableCell
+                  style={cellStyle}
+                >
                   {stockData?.eps ?
                     (formatter.format(stockData?.eps.toFixed(2))):
                     ("Value Unknown")}
