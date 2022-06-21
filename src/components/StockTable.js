@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { createTheme, ThemeProvider, Container, Typography, TextField, LinearProgress, TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider, Container, Typography, TextField, TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 
 import { StockList } from '../config/api';
-import stock from 'financialmodelingprep/lib/stock';
 
 const StockTable = () => {
+
+    /*For formatting currency*/
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
 
     const [stocks, setStocks] = useState([])
     const [loading, setLoading] = useState(false); 
@@ -52,22 +56,6 @@ const StockTable = () => {
         );
       };
 
-    
-    
-
-    // const useStyles = makeStyles(({
-    //     row: {
-    //         backgroundColor: "#16171a",
-    //         cursor: "pointer",
-    //         "&:hover": {
-    //           backgroundColor: "#131111",
-    //         },
-    //         fontFamily: "Montserrat",
-    //       },
-    // }))
-
-    // const classes = useStyles();
-
     return (
         <ThemeProvider theme={darkTheme}>
             <Container style={{ textAlign: "center" }}>
@@ -84,7 +72,7 @@ const StockTable = () => {
                 />
                 <TableContainer>
                     {loading ? (
-                        <LinearProgress style={{background: "white"}}/>
+                        <></>
                     ) : (
                         <Table>
                             <TableHead style={{ backgroundColor: "#fcfcfc" }}>
@@ -111,7 +99,9 @@ const StockTable = () => {
 
                                     return (
                                         <TableRow
-                                            onClick={() => history.push(`/stocks/${row.symbol}`)}
+                                            onClick={() => { 
+                                                history.push(`/${row.symbol}`)
+                                                window.location.reload(false)}}
                                             key={row.id}
                                         >
                                             <TableCell 
@@ -134,11 +124,11 @@ const StockTable = () => {
                                             </TableCell>
 
                                             <TableCell>
-                                                {"$"}{row.price}
+                                                {formatter.format(row.price)}
                                             </TableCell> 
 
                                             <TableCell>
-                                                {row.exchange}
+                                                {row.exchangeShortName}
                                             </TableCell>               
                                         </TableRow>
                                     )

@@ -1,7 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
-import { AppBar, Container, Toolbar, Typography, Select, MenuItem, makeStyles, createTheme, ThemeProvider } from "@material-ui/core";
-import { CurrencyState } from '../CurrencyContext';
+import { AppBar, Container, Toolbar, Typography, makeStyles, createTheme, ThemeProvider } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -15,8 +14,6 @@ const useStyles = makeStyles(() => ({
 
 const Header = () => {
   const classes = useStyles();
-  const { currency, setCurrency } = CurrencyState();
-
   const history = useHistory();
 
   const darkTheme = createTheme({
@@ -30,29 +27,18 @@ const Header = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar color='#ccccf' position='sticky'>
+      <AppBar color="fff" position='sticky'>
           <Container>
               <Toolbar>
                   <Typography 
-                    onClick={()=> history.push("/")} 
+                    onClick={()=> {
+                      history.push("/")
+                      window.location.reload(false)}} 
                     className={classes.title}
                     varaint='h6'
                   > 
-                    Stock App 
+                    Stock Tracker 
                   </Typography>
-                  {/* <Select 
-                    variant="outlined" 
-                    style={{
-                      width: 100,
-                      height: 40,
-                      marginRight: 15,
-                    }}
-                    value={currency}
-                    onChange={(e) => setCurrency(e.target.value)}
-                  >
-                    <MenuItem value={"USD"}>USD</MenuItem>
-                    <MenuItem value={"EUR"}>EUR</MenuItem>
-                  </Select> */}
               </Toolbar>
           </Container>
       </AppBar>

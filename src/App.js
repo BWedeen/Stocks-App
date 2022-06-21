@@ -22,7 +22,7 @@ function App() {
       <div className={classes.App}>
         <Header/>
         <Route path='/' component={Homepage} exact/>
-        <Route path='/stocks/:id' component={StockPage} />
+        <Route path='/:symbol' component={StockPage} />
       </div>
     </BrowserRouter>
   );
