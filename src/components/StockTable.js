@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { createTheme, ThemeProvider, Container, Typography, TextField, TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { createTheme, ThemeProvider, Container, CircularProgress, TextField, TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 
 import { StockList } from '../config/api';
@@ -72,7 +72,9 @@ const StockTable = () => {
                 />
                 <TableContainer>
                     {loading ? (
-                        <></>
+                        <> 
+                            Loading...
+                        </>
                     ) : (
                         <Table>
                             <TableHead style={{ backgroundColor: "#fcfcfc" }}>

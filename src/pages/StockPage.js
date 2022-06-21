@@ -11,7 +11,8 @@ import {
   TableCell, 
   TableHead, 
   TableBody, 
-  ThemeProvider 
+  ThemeProvider ,
+  CircularProgress,
 } from '@material-ui/core';
 import {
   Chart as ChartJS,
@@ -249,7 +250,6 @@ const StockPage = () => {
                   fontFamily: "Montserrat",
                   paddingTop: "2.5rem",
                   paddingBottom: "2.5rem",
-                  paddingLeft: "2.55rem",
                 }}
               >
                 Performance This Week
@@ -258,20 +258,13 @@ const StockPage = () => {
             </>
           ) : (
             <> 
-              <Typography 
-                variant="h4"
-                style={{
-                  color: "white",
-                  fontWeight: "600",
-                  fontFamily: "Montserrat",
-                  paddingTop: "2.5rem",
-                  paddingBottom: "2.5rem",
-                  paddingLeft: "1.5rem",
-                }}
-              >
-                Stock This Week
-              </Typography>
-              <Line options={options} data={data} />
+              <div style={{display: 'flex', justifyContent: 'center', paddingTop: '10rem'}}>
+                <CircularProgress
+                  style={{ color: "white" }}
+                  size={250}
+                  thickness={1}
+                />
+              </div>
             </>
           )
         }
