@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { createTheme, ThemeProvider, Container, CircularProgress, TextField, TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { createTheme, ThemeProvider, Container, Typography, TextField, TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 
 import { StockList } from '../config/api';
@@ -64,10 +64,22 @@ const StockTable = () => {
     return (
         <ThemeProvider theme={darkTheme}>
             <Container style={{ textAlign: "center",  paddingTop: "1.5rem"}}>
+                <Typography
+                    variant="h4"
+                    style={{ 
+                        textAlign: "left", 
+                        marginBottom: "1.5rem",
+                        fontFamily: "Montserrat" ,
+                        fontWeight: "200",
+                        color: "white",
+                    }}
+                >
+                    Analyze and track stocks from every major market.
+                </Typography>
                 <TextField 
                     label="Search for stocks"
                     variant="filled"
-                    style={{marginBottom: 20, width: "100%"}}
+                    style={{marginBottom: 25, width: "100%"}}
                     onChange={(e)=>setSearch(e.target.value)}
                 />
                 <TableContainer>

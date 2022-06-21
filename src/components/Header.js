@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: "Montserrat",
     fontWeight: "700",
     cursor: "pointer",
+    marginLeft: "-17.3rem",
   }
 }))
 
