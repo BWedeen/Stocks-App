@@ -19,7 +19,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className={classes.App}>
+      <div className="App">
         <Header/>
         <Route path='/' component={Homepage} exact/>
         <Route path='/:symbol' component={StockPage} />

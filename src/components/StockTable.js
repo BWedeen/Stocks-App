@@ -42,7 +42,7 @@ const StockTable = () => {
     const darkTheme = createTheme({
         palette: {
           primary: {
-            main: "#fff",
+            main: "#fffff",
           },
           type: "dark",
         },
@@ -66,7 +66,8 @@ const StockTable = () => {
                 </Typography>
                 <TextField 
                     label="Search for stocks"
-                    variant="outlined"
+                    variant="filled"
+                    color="primary"
                     style={{marginBottom: 20, width: "100%"}}
                     onChange={(e)=>setSearch(e.target.value)}
                 />
@@ -91,7 +92,10 @@ const StockTable = () => {
                                     ))}
                                 </TableRow>
                             </TableHead>
-                            <TableBody>
+                            <TableBody
+                                style={{
+                                    backgroundColor: "#14161a"
+                                }}>
                                 { handleSearch()
                                     // Limit how many stocks are shown per page
                                     .slice((page - 1) * 10, (page-1) * 10 + 10)

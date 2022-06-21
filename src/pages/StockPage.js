@@ -75,10 +75,20 @@ const StockPage = () => {
     
     <div className={'container'}>
       <div className={'top'}>
-        <Typography variant="h3">
+        <Typography 
+          variant="h3"
+          style= {{
+            color: "white"
+          }}
+        >
           {symbol}
         </Typography>
-        <Typography variant="h4">
+        <Typography 
+          variant="h4"
+          style= {{
+            color: "white"
+          }}
+        >
           {stockData?.name}
         </Typography>
       </div>
@@ -98,10 +108,13 @@ const StockPage = () => {
                   >
                       {head}
                   </TableCell>
-                ))};
+                ))}
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody style={{
+                                    backgroundColor: "#14161a"
+                                }}
+                                >
               <TableRow>
                 <TableCell>
                   {stockData?.price ? 
