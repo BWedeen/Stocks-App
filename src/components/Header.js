@@ -2,7 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom';
 import { AppBar, Container, Toolbar, Typography, makeStyles, createTheme, ThemeProvider } from "@material-ui/core";
 
-import { FaYinYang } from 'react-icons/fa';
+import { FaCrosshairs } from 'react-icons/fa';
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -32,7 +32,7 @@ const Header = () => {
       <AppBar position='sticky'>
           <Container>
               <Toolbar>
-                <FaYinYang 
+                <FaCrosshairs
                   size={"26"}
                   style={{
                     cursor: "pointer"
@@ -43,7 +43,6 @@ const Header = () => {
                     }
                 />
                 <div style={{
-                  paddingTop: "1px",
                   paddingLeft: "10px"
                 }}>
                   <Typography 
