@@ -39,7 +39,7 @@ const Header = () => {
                   }}
                   onClick={()=> {
                       history.push("/")
-                      window.location.reload(false)}
+                      }
                     }
                 />
                 <div style={{
@@ -53,7 +53,7 @@ const Header = () => {
                     }}
                     onClick={()=> {
                       history.push("/")
-                      window.location.reload(false)}} 
+                    }} 
                     className={classes.title}
                     varaint='h6'
                   > 

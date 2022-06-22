@@ -122,7 +122,7 @@ const StockTable = () => {
                                         <TableRow
                                             onClick={() => { 
                                                 history.push(`/${row.symbol}`)
-                                                window.location.reload(false)}}
+                                            }}
                                             key={row.id}
                                         >
                                             <TableCell 
